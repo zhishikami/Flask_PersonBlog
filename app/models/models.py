@@ -1,4 +1,4 @@
-from resources.app.exts import db
+from ..exts import db
 from sqlalchemy import MetaData
 #分类：文章 = 1： N
 

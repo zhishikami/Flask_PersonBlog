@@ -1,8 +1,8 @@
 import pdb
-from  flask import Flask
-from resources.app.views.views import blog
-from resources.app.views.view_admin import admin
-from resources.app.exts import init_exts
+from flask import Flask
+from .views.views import blog
+from .views.view_admin import admin
+from .exts import init_exts
 
 def create_app():
 

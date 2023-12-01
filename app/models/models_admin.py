@@ -1,4 +1,4 @@
-from resources.app.exts import db
+from ..exts import db
 from sqlalchemy import MetaData
 class AdminUserModel(db.Model):
     __tablename__ = 'tb_adminuser'

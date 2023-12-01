@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, jsonify
-from resources.app.models.models_admin import *
-from resources.app.models.models import *
+from ..models.models_admin import *
+from ..models.models import *
 admin = Blueprint('admin', __name__)
 import time
 
