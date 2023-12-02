@@ -80,7 +80,7 @@
             <form action="" method="post">
                 <h1 class="page-header">文章管理</h1>
                 <button class="breadcrumb">
-                    <a href="/admin/addarticle/">增加文章</a>
+                    <a href="/admin/addarticle/" class="el-button el-button--success">增加文章</a>
                 </button>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
@@ -114,8 +114,8 @@
                                     </td>
                                     <td>{{ article.category.name }}</td>
                                     <td>
-                                        <a href="#">修改</a>
-                                        <a href="#" aid="{{ article.id }}">删除</a>
+                                        <a href="#" class="el-button">修改</a>
+                                        <a href="#" aid="{{ article.id }}" class="el-button el-button--danger">删除</a>
                                     </td>
                                 </tr>
                         {% endfor %}

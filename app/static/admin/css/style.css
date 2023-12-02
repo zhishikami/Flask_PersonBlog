@@ -17,6 +17,7 @@ dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, span, th, tr, td {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
 	display: block;
 }
+
 body {
 	color: #444;
 	background-color: #EEE;
@@ -93,8 +94,8 @@ button.close:hover span {
 	color: #444;
 }
 .btn-primary {
-	background-color: #3399CC;
-	border-color: #3399CC;
+	background-color:#1E88E5;
+	border-color: #1E88E5;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
 	background-color: #3399CC;
@@ -106,6 +107,164 @@ button.close:hover span {
 	background-color: #FF5E52;
 	border-color: #FF5E52;
 }
+.btn-edit {
+	background-color: #7ED321;
+	border-color: #7ED321;
+}
+        /* 按钮样式模仿 Element Plus */
+        .el-button {
+            display: inline-block;
+            padding: 4px 7px;
+            font-size: 14px;
+            font-weight: 200;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+            user-select: none;
+            background-color: #409EFF;
+            color: #FFFFFF;
+        }
+
+        .el-button:hover {
+            background-color: #66B1FF;
+        }
+
+        .el-button:active {
+            background-color: #66B1FF;
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+        }
+
+        .el-button--danger {
+            background-color: #F56C6C;
+        }
+
+        .el-button--danger:hover {
+            background-color: #F78989;
+        }
+
+        .el-button--danger:active {
+            background-color: #F78989;
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+        }
+
+                        /* Element Plus 成功按钮样式 */
+        .el-button--success {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #67c23a;
+            color: #fff;
+            background-color: #67c23a;
+            transition: all 0.3s ease;
+        }
+
+        .el-button--success:hover {
+            background-color: #85ce61;
+            border-color: #85ce61;
+        }
+
+        .el-button--success:active {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+/* 卡片 */
+.card {
+  border-radius: 8px;
+  padding: 20px;
+  margin-left: 50px;
+  background-color: #f5f7fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+}
+
+.card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card span.text-muted {
+  font-size: 16px;
+  color: #888;
+}
+
+/* 示例样式，你可以根据需要进行调整 */
+.user-card {
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f5f7fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    font-size: 32px;
+    margin-right: 15px;
+}
+
+.user-details h4 {
+    margin-bottom: 5px;
+}
+
+.user-details p {
+    font-size: 18px;
+    color: #888;
+}
+
+
+/* 模仿 Element Plus 表单样式 */
+         .el-input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #dcdfe6;
+            border-radius: 4px;
+            transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .el-input:focus {
+            border-color: #409eff;
+            outline: none;
+        }
+
+        .el-textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #dcdfe6;
+            border-radius: 4px;
+            transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            resize: vertical;
+        }
+
+
+
+
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger {
 	background-color: #EF4639;
 	border-color: #EF4639;
@@ -243,7 +402,7 @@ textarea::-webkit-scrollbar-thumb {
 	padding: 20px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: #f8f8f8;
+	background-color: #0c1e35;
 	border-right: 1px solid #eee;
 }
 }
