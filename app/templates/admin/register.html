@@ -1,12 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>博客后台管理系统</title>
-    <link rel="stylesheet" type="text/css" href="/static/admin/css/bootstrap.min.css">
+    <title>博客后台管理系统 - 注册</title>
+    <!-- 这里放入你的样式和其他链接 -->
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/style.css">
     <link rel="stylesheet" type="text/css" href="/static/admin/css/login.css">
     <link rel="apple-touch-icon-precomposed" href="/static/admin/images/icon/icon.png">
@@ -21,7 +19,6 @@
     <script>window.location.href = 'upgrade-browser.html';</script>
     <![endif]-->
 </head>
-
 <body class="user-select">
 <div class="container">
     <div class="siteIcon">
@@ -32,43 +29,25 @@
              draggable="false"/>
     </div>
 
-    <form action="/admin/login/" method="post" autocomplete="off" class="form-signin">
-        <h2 class="form-signin-heading">用户登录</h2>
+    <form action="/admin/register/" method="post" autocomplete="off" class="form-signin">
+        <h2 class="form-signin-heading">用户注册</h2>
         <label for="userName" class="sr-only">用户名</label>
-        <input type="text" id="userName" name="username" class="form-control" placeholder="用户名" required
+        <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" required
                autofocus autocomplete="off" maxlength="10">
+        <label for="email" class="sr-only">邮箱</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="邮箱" required
+               autocomplete="off">
         <label for="userPwd" class="sr-only">密码</label>
-        <input type="password" id="userPwd" name="userpwd" class="form-control" placeholder="密码" required
+        <input type="password" id="userPwd" name="password" class="form-control" placeholder="密码" required
                autocomplete="off" maxlength="18">
-        <a href="#">
-            <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button>
-        </a>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
 
     <div class="footer">
-        <p><a href="/admin/register" data-placement="left" title="没有账户?">没有账户？创建一个叭→</a>
-        </p>
+        <p><a href="/admin/login" data-placement="left" title="已有账号? 前往登录">已有账号？前往登录→</a></p>
     </div>
-
 </div>
+<!-- 这里放入你的 JavaScript 文件链接和其他脚本 -->
 <script src="/static/admin/js/bootstrap.min.js"></script>
-<script>
-    $('[data-toggle="tooltip"]').tooltip();
-    window.oncontextmenu = function () {
-        //return false;
-    };
-    $('.siteIcon img').click(function () {
-        window.location.reload();
-    });
-    $('#signinSubmit').click(function () {
-        if ($('#userName').val() === '') {
-            $(this).text('用户名不能为空');
-        } else if ($('#userPwd').val() === '') {
-            $(this).text('密码不能为空');
-        } else {
-            $(this).text('请稍后...');
-        }
-    });
-</script>
 </body>
 </html>
