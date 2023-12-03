@@ -78,15 +78,23 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
             <h1 class="page-header">后台总览</h1>
             <div class="row placeholders ">
+                 <a href="/index">
                 <div class="col-xs-6 col-sm-3 placeholder card ">
                     <h4>分类</h4>
-                    <span class="text-muted"> {{ categrorys.count() }} 个</span></div>
+                    <span class="text-muted"> {{ categrorys.count() }} 个</span>
+
+                </div>
+                        </a>
+                  <a href="/article">
                 <div class="col-xs-6 col-sm-3 placeholder card ">
                     <h4>文章</h4>
                     <span class="text-muted"> {{ articles.count() }} 篇</span></div>
-                <div class="col-xs-6 col-sm-3 placeholder card ">
+             </a>
+                   <div class="col-xs-6 col-sm-3 placeholder card ">
                     <h4>相册</h4>
-                    <span class="text-muted"> {{ photos.count() }} 张</span></div>
+                    <span class="text-muted"> {{ photos.count() }} 张</span>
+               </div>
+               </a>
             </div>
             <h1 class="page-header">状态</h1>
     <div class="user-card">
