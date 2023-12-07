@@ -37,22 +37,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">QFCMS</a>
+                    <a class="navbar-brand" href="#">博客后台管理系统</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
 
                         {# 如果用户登录了就显示用户名，如果没有登录就显示登录按钮 #}
                         {% if username %}
-                        	<li>
-                                <a>欢迎您:{{ username }}</a>
-                            </li>
-                            <li><a href="/admin/logout/">退出登录</a></li>
+                        <li>
+                            <a>欢迎您:{{ username }}</a>
+                        </li>
+                        <li><a href="/admin/logout/">退出登录</a></li>
                         {% else %}
-                            <li><a href="/admin/login/>登录</a></li>
+                        <li><a href="/admin/login/>登录</a></li>
                         {% endif %}
 
-                        <li><a data-toggle="modal" data-target="#WeChat"> </a></li>
+                        <li><a data-toggle=" modal" data-target="#WeChat"> </a></li>
                     </ul>
 
                 </div>
@@ -78,37 +78,39 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
             <h1 class="page-header">后台总览</h1>
             <div class="row placeholders ">
-                 <a href="/index">
-                <div class="col-xs-6 col-sm-3 placeholder card ">
-                    <h4>分类</h4>
-                    <span class="text-muted"> {{ categrorys.count() }} 个</span>
+                <a href="/index">
+                    <div class="col-xs-6 col-sm-3 placeholder card ">
+                        <h4>分类</h4>
+                        <span class="text-muted"> {{ categrorys.count() }} 个</span>
 
-                </div>
-                        </a>
-                  <a href="/article">
-                <div class="col-xs-6 col-sm-3 placeholder card ">
-                    <h4>文章</h4>
-                    <span class="text-muted"> {{ articles.count() }} 篇</span></div>
-             </a>
-                   <div class="col-xs-6 col-sm-3 placeholder card ">
-                    <h4>相册</h4>
-                    <span class="text-muted"> {{ photos.count() }} 张</span>
-               </div>
-               </a>
+                    </div>
+                </a>
+                <a href="/article">
+                    <div class="col-xs-6 col-sm-3 placeholder card ">
+                        <h4>文章</h4>
+                        <span class="text-muted"> {{ articles.count() }} 篇</span></div>
+                </a>
+                <a href="/">
+                    <div class="col-xs-6 col-sm-3 placeholder card ">
+                        <h4>相册</h4>
+                        <span class="text-muted"> {{ photos.count() }} 张</span>
+                    </div>
+                </a>
+                </a>
             </div>
             <h1 class="page-header">状态</h1>
-    <div class="user-card">
-    <div class="card-content">
-        <div class="user-icon">
-            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-        </div>
-        <div class="user-details">
-            <h4>登录者</h4>
-            <p>{{ username }}</p>
-        </div>
+            <div class="user-card">
+                <div class="card-content">
+                    <div class="user-icon">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="user-details">
+                        <h4>登录者</h4>
+                        <p>{{ username }}</p>
+                    </div>
 
-    </div>
-</div>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -24,6 +24,7 @@
             <li><a href="/article/">我的日记</a></li>
             <li><a href="/about/">关于我</a></li>
         </ul>
+        <div class="underline"></div>
     </nav>
 </header>
 <article>
@@ -107,5 +108,30 @@
     </p>
 </footer>
 <a href="#" class="cd-top">Top</a>
+<script>
+   // 获取导航列表和下划线元素
+const navItems = document.querySelectorAll('#starlist li');
+const underline = document.querySelector('.underline');
+
+navItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        // 获取当前列表项的宽度和偏移量
+        const width = item.clientWidth;
+        const offsetLeft = item.offsetLeft;
+
+        // 应用下划线宽度和偏移量，创建滑动效果
+        underline.style.width = `${width}px`;
+        underline.style.transform = `translateX(${offsetLeft}px)`;
+    });
+
+    item.addEventListener('mouseleave', () => {
+        // 鼠标离开时，重置下划线样式
+        underline.style.width = '0';
+        underline.style.transform = 'translateX(0)';
+    });
+});
+
+
+</script>
 </body>
 </html>

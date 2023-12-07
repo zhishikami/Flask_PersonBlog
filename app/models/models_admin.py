@@ -27,3 +27,10 @@ class UserModel(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)  # 验证密码是否匹配哈希值
+
+
+class EmailCaptchaModel(db.Model):
+    __tablename__ = "eamil_captcha"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    email = db.Column(db.String(100), nullable=False)
+    captcha = db.Column(db.String(100), nullable=False)

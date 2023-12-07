@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, jsonify
+
+from ..exts import mail
 from ..models.models_admin import *
 from ..models.models import *
+from flask_mail import Message
 
 admin = Blueprint('admin', __name__)
-import time
 
 user_blueprint = Blueprint('user', __name__)
 
@@ -69,6 +71,51 @@ def admin_logout():
     response = redirect('/admin/login/')
     response.delete_cookie('user_id')
     return response
+
+
+# @admin.route("/register")
+# def register():
+#     # 验证用户提交的邮箱和验证码是否对应且正确
+#     return render_template("register.html")
+
+
+# bp.route: 如果没有指定methods参数，默认就是GET请求
+# @admin.route("/captcha/email")
+# def get_email_captcha():
+#     # url传参数
+#     # /captcha/emial?email=xxx@qq.com
+#     email = request.args.get("email")
+#     print(email)
+#     # 6位，数字和字母的组成
+#     source = string.digits * 6
+#     captcha = random.sample(source, 6)
+#     # 列表变成字符串
+#     captcha = "".join(captcha)  # 965083
+#     print(captcha)
+#
+#     # I/O 操作
+#     message = Message(subject="菜鸡学安全", recipients=[email], body=f"您的验证码是:{captcha}")
+#     mail.send(message)
+#
+#     # 使用数据库存储
+#     email_captcha = EmailCaptchaModel(email=email, captcha=captcha)
+#     db.session.add(email_captcha)
+#     db.session.commit()
+#
+#     # RESTful API，这是一个格式
+#     # {code:200/400/500, message: "xxx", data: {}}
+#
+#     return jsonify({"code": 200, "message": "", "data": None})
+#
+#     # memcached 和redis 适合存储验证，这里扩展，这里暂用数据库来存储
+
+
+@admin.route("/admin/mail/test")
+def mail_test():
+    # recipients是接收人，是一个数组可以给多人同时发送邮件
+    message = Message(subject="菜鸡学安全1111", recipients=['w2530622506@163.com'], body="这是一条测试邮件！！！")
+    mail.send(message)
+    return "邮件发送成功"
 
 
 # 用户注册路由

@@ -5,6 +5,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, butt
 }
 body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, form, button, input, textarea, p, span, th, td, article, aside, nav, section, img, a, table, tbody, tr, label {
 	outline: none;
+
 	transition: all 0.30s ease-in-out;
 	-webkit-transition: all 0.30s ease-in-out;
 	-moz-transition: all 0.30s ease-in-out;
@@ -17,12 +18,16 @@ dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, span, th, tr, td {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
 	display: block;
 }
+.table table-striped table-hover span{color:#fff}
 
 body {
 	color: #444;
 	background-color: #EEE;
 	overflow-x: hidden;
 	padding-top: 50px;
+	background-image: url("/static/admin/images/erciyuan/erciyuan6.png") ;
+	background-repeat:no-repeat;
+	background-size:cover;
 }
 /*页面滚动条*/
 html::-webkit-scrollbar {
@@ -60,7 +65,7 @@ html::-webkit-scrollbar-thumb:hover {
 }
 /*公共*/
 a {
-	color: #555;
+	color: #611fec;
 	cursor: pointer;
 	text-decoration: none;
 }
@@ -185,6 +190,10 @@ button.close:hover span {
   padding: 20px;
   margin-left: 50px;
   background-color: #f5f7fa;
+ /* background-image: url("/static/admin/images/erciyuan/erciyuan1.png") ;*/
+ /* background-size:100px 88px;*/
+ background-size:cover;
+  background-repeat:no-repeat;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
@@ -347,7 +356,7 @@ textarea::-webkit-scrollbar-thumb {
 	font-family: TaurusNormal;
 	font-size: 26px;
 	line-height: 26px;
-	color: #777;
+	color: #611fec;
 	margin-left: 0 !important;
 }
 .navbar>.container-fluid .navbar-brand:hover {
@@ -374,6 +383,7 @@ textarea::-webkit-scrollbar-thumb {
 /*侧边导航样式*/
 .sidebar {
 	display: none;
+	color:#fff;
 }
 .sidebar::-webkit-scrollbar {
  width:1px;
@@ -402,7 +412,7 @@ textarea::-webkit-scrollbar-thumb {
 	padding: 20px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: #0c1e35;
+	/*background-color: #0c1e35;*/
 	border-right: 1px solid #eee;
 }
 }
@@ -435,10 +445,12 @@ textarea::-webkit-scrollbar-thumb {
 .main .page-header {
 	font-size: 26px;
 	margin-top: 0;
+	color:#fff;
 	border-bottom: 1px solid #DDD;
 }
 .placeholders {
 	text-align: center;
+
 }
 .placeholders h4 {
 	margin-bottom: 5px;
