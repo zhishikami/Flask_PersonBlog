@@ -30,6 +30,7 @@
 <article>
     <aside class="l_box">
         <div class="about_me">
+            <a  href="/about/">
             <h2>关于我</h2>
             <ul>
                 <i><img src="/static/home/images/4.jpg"></i>
@@ -39,14 +40,17 @@
                     分享个人博客，以及打篮球的心得。
                 </p>
             </ul>
+                  </a>
         </div>
         <div class="wdxc">
+             <a  href="/photos/">
             <h2>我的相册</h2>
             <ul>
                 {% for photo in photos %}
                      <li><a href="#"><img src="{{ photo.url }}"></a></li>
                 {% endfor %}
             </ul>
+                 </a>
         </div>
         <div class="search">
             <form action="" method="post" name="searchform" id="searchform">
@@ -79,7 +83,7 @@
         <div class="links">
             <h2>友情链接</h2>
             <ul>
-                <a href="#">个人博客</a> <a href="#">iKun博客</a>
+                <a href="/admin/login">博客后台管理系统</a> <a href="#">iKun个人博客</a>
             </ul>
         </div>
         <div class="guanzhu">
