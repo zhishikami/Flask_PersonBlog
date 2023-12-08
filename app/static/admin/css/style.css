@@ -187,14 +187,14 @@ button.close:hover span {
 /* 卡片 */
 .card {
   border-radius: 8px;
-  padding: 20px;
+  padding: 60px;
   margin-left: 50px;
-  background-color: #f5f7fa;
- /* background-image: url("/static/admin/images/erciyuan/erciyuan1.png") ;*/
- /* background-size:100px 88px;*/
+  /*background-color: #f5f7fa;*/
+ background-image: url("/static/admin/images/erciyuan/erciyuan8.png") ;
+ background-size:100px 88px;
  background-size:cover;
   background-repeat:no-repeat;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
   transition: transform 0.3s ease;
 }
 
@@ -215,10 +215,21 @@ button.close:hover span {
 
 /* 示例样式，你可以根据需要进行调整 */
 .user-card {
+height: 475px;
+    width: 865px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 8px;
     padding: 20px;
     margin-top: 20px;
     background-color: #f5f7fa;
+    background-image: url(/static/admin/images/erciyuan/erciyuan9.png);
+    background-size: 100px 88px;
+    background-size: contain;
+    background-repeat: no-repeat;
+/*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+  transition: transform 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

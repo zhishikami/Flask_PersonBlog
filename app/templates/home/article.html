@@ -46,7 +46,7 @@
             <h2>文章分类</h2>
             <ul>
                 {% for category in categorys %}
-                	<li><a href="#">{{ category.name }}</a></li>
+                <li><a href="#">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -60,11 +60,11 @@
     <main class="r_box">
         <ul>
             {% for article in articles %}
-                <li>
-                    <i><a href="#"><img src="{{ article.img }}"></a></i>
-                    <h3><a href="#"> {{ article.name }}</a></h3>
-                    <p> {{ article.content }} </p>
-                </li>
+            <li>
+                <i><a href="#"><img src="{{ article.img }}"></a></i>
+                <h3><a href="#"> {{ article.name }}</a></h3>
+                <p> {{ article.content }} </p>
+            </li>
             {% endfor %}
         </ul>
     </main>
@@ -118,6 +118,7 @@ navItems.forEach(item => {
         this.classList.add('active');
 
 });
+
 
 </script>
 </body>

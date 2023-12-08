@@ -30,27 +30,27 @@
 <article>
     <aside class="l_box">
         <div class="about_me">
-            <a  href="/about/">
-            <h2>关于我</h2>
-            <ul>
-                <i><img src="/static/home/images/4.jpg"></i>
-                <p>
-                    <b>iKun</b>，一个90后草根站长！18年入行。
-                    一直潜心研究web技术，一边工作一边积累经验，
-                    分享个人博客，以及打篮球的心得。
-                </p>
-            </ul>
-                  </a>
+            <a href="/about/">
+                <h2>关于我</h2>
+                <ul>
+                    <i><img src="/static/home/images/4.jpg"></i>
+                    <p>
+                        <b>iKun</b>，一个90后草根站长！18年入行。
+                        一直潜心研究web技术，一边工作一边积累经验，
+                        分享个人博客，以及打篮球的心得。
+                    </p>
+                </ul>
+            </a>
         </div>
         <div class="wdxc">
-             <a  href="/photos/">
-            <h2>我的相册</h2>
-            <ul>
-                {% for photo in photos %}
-                     <li><a href="#"><img src="{{ photo.url }}"></a></li>
-                {% endfor %}
-            </ul>
-                 </a>
+            <a href="/photos/">
+                <h2>我的相册</h2>
+                <ul>
+                    {% for photo in photos %}
+                    <li><a href="#"><img src="{{ photo.url }}"></a></li>
+                    {% endfor %}
+                </ul>
+            </a>
         </div>
         <div class="search">
             <form action="" method="post" name="searchform" id="searchform">
@@ -68,7 +68,7 @@
             <h2>文章分类</h2>
             <ul>
                 {% for category in categorys %}
-                    <li><a href="#">{{ category.name }}</a></li>
+                <li><a href="#">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -76,7 +76,7 @@
             <h2>iKun推荐</h2>
             <ul>
                 {% for commend in commends %}
-                    <li><a href="#">{{ commend.name }}</a></li>
+                <li><a href="#">{{ commend.name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -95,12 +95,12 @@
     </aside>
     <main class="r_box">
         <ul>
-            {% for article in  articles %}
-                <li>
-                    <i><a href="#"><img src="{{ article.img }}"></a></i>
-                    <h3><a href="#">{{ article.name }}</a></h3>
-                    <p> {{ article.content }} </p>
-                </li>
+            {% for article in articles %}
+            <li>
+                <i><a href="#"><img src="{{ article.img }}"></a></i>
+                <h3><a href="#">{{ article.name }}</a></h3>
+                <p> {{ article.content }} </p>
+            </li>
             {% endfor%}
 
         </ul>
@@ -134,6 +134,7 @@ navItems.forEach(item => {
         underline.style.transform = 'translateX(0)';
     });
 });
+
 
 
 </script>
