@@ -1,2 +1,2 @@
-def models_user():
-    return None
+from .models import *
+from .models_admin import *

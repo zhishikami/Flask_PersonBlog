@@ -1,12 +1,11 @@
-from flask import Blueprint, render_template, request, redirect, jsonify
+import time
 
-from ..exts import mail
-from ..models.models_admin import *
-from ..models.models import *
-from flask_mail import Message
+from ..forms import RegisterForm, get_email_captcha, validate_captcha
+from flask import Blueprint, render_template, request, redirect, jsonify
+from ..models import *
+
 
 admin = Blueprint('admin', __name__)
-
 user_blueprint = Blueprint('user', __name__)
 
 # 装饰器：登录验证
@@ -54,9 +53,8 @@ def admin_login():
         username = request.form.get('username')
         userpwd = request.form.get('userpwd')
 
-        user = AdminUserModel.query.filter_by(name=username,
-                                              password=userpwd).first()
-        if user:
+        user = AdminUserModel.query.filter_by(name=username).first()
+        if user.check_password(userpwd):
             response = redirect('/admin/index/')
             response.set_cookie('user_id',
                                 str(user.id),
@@ -73,84 +71,40 @@ def admin_logout():
     return response
 
 
-# @admin.route("/register")
-# def register():
-#     # 验证用户提交的邮箱和验证码是否对应且正确
-#     return render_template("register.html")
 
 
-# bp.route: 如果没有指定methods参数，默认就是GET请求
-# @admin.route("/captcha/email")
-# def get_email_captcha():
-#     # url传参数
-#     # /captcha/emial?email=xxx@qq.com
-#     email = request.args.get("email")
-#     print(email)
-#     # 6位，数字和字母的组成
-#     source = string.digits * 6
-#     captcha = random.sample(source, 6)
-#     # 列表变成字符串
-#     captcha = "".join(captcha)  # 965083
-#     print(captcha)
-#
-#     # I/O 操作
-#     message = Message(subject="菜鸡学安全", recipients=[email], body=f"您的验证码是:{captcha}")
-#     mail.send(message)
-#
-#     # 使用数据库存储
-#     email_captcha = EmailCaptchaModel(email=email, captcha=captcha)
-#     db.session.add(email_captcha)
-#     db.session.commit()
-#
-#     # RESTful API，这是一个格式
-#     # {code:200/400/500, message: "xxx", data: {}}
-#
-#     return jsonify({"code": 200, "message": "", "data": None})
-#
-#     # memcached 和redis 适合存储验证，这里扩展，这里暂用数据库来存储
-
-
-@admin.route("/admin/mail/test")
-def mail_test():
-    # recipients是接收人，是一个数组可以给多人同时发送邮件
-    message = Message(subject="菜鸡学安全1111", recipients=['w2530622506@163.com'], body="这是一条测试邮件！！！")
-    mail.send(message)
-    return "邮件发送成功"
-
-
-# 用户注册路由
+#---------------------------用户注册路由--------------------------------------#
 @admin.route('/admin/register/', methods=['GET', 'POST'])
 def register():
-    if request.method == 'GET':
-        return render_template('admin/register.html')  # 创建一个 register.html 模板用于注册表单
-    elif request.method == 'POST':
-        # 从表单中获取用户详细信息
-        username = request.form.get('username')
-        password = request.form.get('password')
-        email = request.form.get('email')
-
-        # 检查用户名或邮箱是否已经存在于数据库中
-        existing_user = UserModel.query.filter_by(username=username).first()
-        existing_email = UserModel.query.filter_by(email=email).first()
-
-        if existing_user:
-            return '用户名已存在，请选择不同的用户名。'
-        elif existing_email:
-            return '邮箱已存在，请使用不同的邮箱。'
-
-        # 创建一个新的用户实例
-        new_user = UserModel(username=username, password=password, email=email)
-
-        try:
-            # 将新用户添加到数据库中
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect('/admin/login/')  # 注册成功后重定向到登录页面
-        except Exception as e:
-            db.session.rollback()
-            return f"错误：{e}。注册失败。"  # 处理注册失败情况
-
-    return '无效请求'
+    form = RegisterForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        if form.get_cap.data:
+            print('获取验证码！')
+            get_email_captcha(email)
+        elif form.submit.data:
+            print('注册！')
+            captcha = form.captcha.data
+            name = form.username.data
+            password = form.password.data
+            email = form.email.data
+            new_user = AdminUserModel(name=name, password=password, email=email)
+            if not new_user.check_name(name):
+                return '该用户名已被注册~注册失败~'
+            if not new_user.check_email(email):
+                return '该邮箱已被注册~注册失败~'
+            if validate_captcha(email, captcha):
+                try:
+                    db.session.add(new_user)
+                    db.session.commit()
+                    return redirect('/admin/login/')  # 注册成功后重定向到登录页面
+                except Exception as e:
+                    db.session.rollback()
+                    return f"错误：{e}。注册失败。"  # 处理注册失败情况
+            else:
+                return '验证码错误~注册失败~'
+    return render_template('admin/verify_email.html',
+                           form=form)
 
 
 # ------------------------分类管理----------------------------------

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-from app.models.models import *
+from ..models.models import *
 blog = Blueprint('blog', __name__)
 
 #蓝图
