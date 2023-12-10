@@ -35,10 +35,23 @@
         <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" required
                autofocus autocomplete="off" maxlength="10">
         <label for="email" class="sr-only">邮箱</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="邮箱" required
-               autocomplete="off">
+    <div class="input-group">
+        <input type="email" id="email" name="email" class="form-control" placeholder="邮箱" required autocomplete="off">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="sendVerification">发送邮箱</button>
+        </span>
+    </div>
+
+    <div class="form-group" id="verificationCode">
+        <label for="verification" class="sr-only">验证码</label>
+        <input type="text" id="verification" name="verification" class="form-control" placeholder="输入邮箱验证码">
+
+    </div>
         <label for="userPwd" class="sr-only">密码</label>
         <input type="password" id="userPwd" name="password" class="form-control" placeholder="密码" required
+               autocomplete="off" maxlength="18">
+         <label for="confirmUserPwd" class="sr-only">确认密码</label>
+        <input type="password" id="confirmUserPwd" name="confirmPassword" class="form-control" placeholder="确认密码" required
                autocomplete="off" maxlength="18">
         <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
@@ -49,5 +62,43 @@
 </div>
 <!-- 这里放入你的 JavaScript 文件链接和其他脚本 -->
 <script src="/static/admin/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    let countdown = 60;
+
+    function setCountdown() {
+        if (countdown > 0) {
+            $('#sendVerification').attr('disabled', true);
+            $('#sendVerification').text(countdown + '秒后重新发送');
+            countdown--;
+            setTimeout(setCountdown, 1000);
+        } else {
+            $('#sendVerification').removeAttr('disabled');
+            $('#sendVerification').text('发送邮箱');
+            countdown = 60;
+        }
+    }
+
+    function validateEmail(email) {
+        // 正则表达式验证邮箱格式
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    $('#sendVerification').click(function () {
+        const userEmail = $('#email').val();
+        if (!validateEmail(userEmail)) {
+            // 如果邮箱格式不正确，在这里添加提醒用户重新输入的逻辑
+            alert('请输入正确格式的邮箱地址');
+            return; // 邮箱格式不正确，不执行后续逻辑
+        }
+        // 在这里添加发送邮箱的逻辑，假设发送成功后开始倒计时
+        // 模拟发送成功后开始倒计时
+        setCountdown();
+    });
+});
+
+
+</script>
 </body>
 </html>

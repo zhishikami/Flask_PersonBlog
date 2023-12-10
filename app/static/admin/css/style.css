@@ -184,6 +184,21 @@ button.close:hover span {
             background-color: #2c3e50;
             border-color: #2c3e50;
         }
+
+
+        @keyframes myfirst
+{
+	0%   { background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); border-radius:30px; left:0px; top:0px;}
+	25%  { background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);border-radius:30px; right:200px; top:0px;}
+	50%  { background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); border-radius:30px; left:200px; top:200px;}
+	75%  { background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);border-radius:30px;  left:0px; top:200px;}
+	100% { background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%); border-radius:30px; left:0px; top:0px;}
+}
+.welcome{
+ animation:myfirst 5s;
+}
+
+
 /* 卡片 */
 .card {
   border-radius: 8px;
@@ -193,6 +208,7 @@ button.close:hover span {
  background-image: url("/static/admin/images/erciyuan/erciyuan8.png") ;
  background-size:100px 88px;
  background-size:cover;
+
   background-repeat:no-repeat;
 /*  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
   transition: transform 0.3s ease;

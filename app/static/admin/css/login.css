@@ -93,6 +93,11 @@ opacity: .95;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+#confirmUserPwd{
+    margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
 .footer {
 	max-width: 330px;
 	margin: 15px auto;

@@ -45,7 +45,7 @@
                         {# 如果用户登录了就显示用户名，如果没有登录就显示登录按钮 #}
                         {% if username %}
                         <li>
-                            <a>欢迎您:{{ username }}</a>
+                            <a class="welcome">欢迎您:{{ username }}</a>
                         </li>
                         <li><a href="/admin/logout/">退出登录</a></li>
                         {% else %}

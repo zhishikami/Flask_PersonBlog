@@ -141,24 +141,26 @@
 <script src="/static/admin/js/admin-scripts.js"></script>
 <script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
 <script>
-    //是否确认删除
+    // 确认删除
     $(function () {
-        $("#main table tbody tr td a").click(function () {
+        $("#main table tbody tr td a").click(function (event) {
             var that = $(this);
-            var id = that.attr("cid"); //对应id
-            if (event.srcElement.outerText === "删除") {
-                if (window.confirm("此操作不可逆，是否确认？")) {
-                    // 点击删除按钮
-                    $.post('/admin/delcategory/', {'id':id}, function (data){
-                        console.log(data.msg)
-                        if(data.code == 200){
-                            location.reload()
+            var id = that.attr("cid"); // 对应的ID
+            if (event.target.innerText === "删除") {
+                event.preventDefault(); // 阻止链接的默认操作
+                if (confirm("是否确认删除？")) {
+                    // 确认点击了删除按钮
+                    $.post('/admin/delcategory/', {'id': id}, function (data) {
+                        console.log(data.msg);
+                        if (data.code == 200) {
+                            location.reload();
                         }
-                    })
+                    });
                 }
             }
-        })
+        });
     });
 </script>
+
 </body>
 </html>
