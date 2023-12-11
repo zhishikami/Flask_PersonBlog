@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from ..models.models import *
 blog = Blueprint('blog', __name__)
-
+from ..forms import SearchForm
 #蓝图
 @blog.route('/')
 @blog.route('/index/')
@@ -17,12 +17,28 @@ def blog_index():
                            commends=commends
                            )
 
+# 搜索文章
+@blog.route('/search/', methods=['GET', 'POST'])
+def search():
+    photos = PhotoModel.query.limit(6)
+    categorys = CategoryModel.query.all()
+    articles = ArticleModel.query.all()
+    commends = articles[:4]
+    if request.method == 'POST':
+        keyword = request.form.get('keyboard', '')
+        articles = ArticleModel.query.filter(ArticleModel.name.like(f'%{keyword}%')).all()
+    return render_template('home/index.html',
+                           photos=photos,
+                           categorys=categorys,
+                           articles=articles,
+                           commends=commends)
+
 
 # 博客-我的相册
 @blog.route('/photos/')
 def blog_photos():
     photos = PhotoModel.query.all()
-    return  render_template('home/photos.html', photos=photos)
+    return render_template('home/photos.html', photos=photos)
 
 # 博客-我的日计
 @blog.route('/article/')
