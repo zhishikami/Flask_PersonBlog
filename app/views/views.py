@@ -4,22 +4,8 @@ blog = Blueprint('blog', __name__)
 from ..forms import SearchForm
 #蓝图
 @blog.route('/')
-@blog.route('/index/')
+@blog.route('/index/', methods=['GET', 'POST'])
 def blog_index():
-    photos = PhotoModel.query.limit(6)
-    categorys = CategoryModel.query.all()
-    articles = ArticleModel.query.all()
-    commends = articles[:4]
-    return render_template('home/index.html',
-                           photos=photos,
-                           categorys=categorys,
-                           articles=articles,
-                           commends=commends
-                           )
-
-# 搜索文章
-@blog.route('/search/', methods=['GET', 'POST'])
-def search():
     photos = PhotoModel.query.limit(6)
     categorys = CategoryModel.query.all()
     articles = ArticleModel.query.all()
@@ -38,7 +24,7 @@ def search():
 @blog.route('/photos/')
 def blog_photos():
     photos = PhotoModel.query.all()
-    return render_template('home/photos.html', photos=photos)
+    return  render_template('home/photos.html', photos=photos)
 
 # 博客-我的日计
 @blog.route('/article/')
