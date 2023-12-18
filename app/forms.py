@@ -19,6 +19,9 @@ class RegisterForm(FlaskForm):
     get_cap = wtforms.SubmitField('获取验证码')
     submit = wtforms.SubmitField('注册')
 
+class SearchForm(FlaskForm):
+    searname = wtforms.StringField()
+    submit = wtforms.SubmitField('搜索')
 
 def validate_captcha(email, captcha):
     captcha_model = EmailCaptchaModel.query.filter_by(email=email, captcha=captcha).first()
@@ -36,6 +39,3 @@ def get_email_captcha(email):
     db.session.add(email_captcha)
     db.session.commit()
     return True
-    # TODO 检查用户名或邮箱是否已经存在于数据库中
-    # existing_user = UserModel.query.filter_by(username=username).first()
-    # existing_email = UserModel.query.filter_by(email=email).first()

@@ -1,21 +1,23 @@
 from flask import Blueprint, render_template, request
 from ..models.models import *
 blog = Blueprint('blog', __name__)
-
+from ..forms import SearchForm
 #蓝图
 @blog.route('/')
-@blog.route('/index/')
+@blog.route('/index/', methods=['GET', 'POST'])
 def blog_index():
     photos = PhotoModel.query.limit(6)
     categorys = CategoryModel.query.all()
     articles = ArticleModel.query.all()
     commends = articles[:4]
+    if request.method == 'POST':
+        keyword = request.form.get('keyboard', '')
+        articles = ArticleModel.query.filter(ArticleModel.name.like(f'%{keyword}%')).all()
     return render_template('home/index.html',
                            photos=photos,
                            categorys=categorys,
                            articles=articles,
-                           commends=commends
-                           )
+                           commends=commends)
 
 
 # 博客-我的相册
