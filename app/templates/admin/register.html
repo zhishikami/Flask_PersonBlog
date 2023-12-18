@@ -29,32 +29,33 @@
              draggable="false"/>
     </div>
 
-    <form action="/admin/register/" method="post" autocomplete="off" class="form-signin">
-        <h2 class="form-signin-heading">用户注册</h2>
-        <label for="userName" class="sr-only">用户名</label>
-        <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" required
-               autofocus autocomplete="off" maxlength="10">
-        <label for="email" class="sr-only">邮箱</label>
+   <form action="/admin/register" method="post" autocomplete="off" class="form-signin">
+    <h2 class="form-signin-heading">用户注册</h2>
+    <label for="userName" class="sr-only">用户名</label>
+    <input type="text" id="userName" name="userName" class="form-control" placeholder="用户名" required autofocus autocomplete="off" maxlength="10" value="{{ form.username.data }}">
+
+    <label for="email" class="sr-only">邮箱</label>
     <div class="input-group">
-        <input type="email" id="email" name="email" class="form-control" placeholder="邮箱" required autocomplete="off">
+        <input type="email" id="email" name="email" class="form-control" placeholder="邮箱" required autocomplete="off" value="{{ form.email.data }}">
         <span class="input-group-btn">
             <button class="btn btn-default" type="button" id="sendVerification">发送邮箱</button>
         </span>
     </div>
 
     <div class="form-group" id="verificationCode">
-        <label for="verification" class="sr-only">验证码</label>
-        <input type="text" id="verification" name="verification" class="form-control" placeholder="输入邮箱验证码">
+        <label for="captcha" class="sr-only">验证码</label>
+        <input type="text" id="captcha" name="captcha" class="form-control" placeholder="输入邮箱验证码" value="{{ form.captcha.data }}">
 
     </div>
-        <label for="userPwd" class="sr-only">密码</label>
-        <input type="password" id="userPwd" name="password" class="form-control" placeholder="密码" required
-               autocomplete="off" maxlength="18">
-         <label for="confirmUserPwd" class="sr-only">确认密码</label>
-        <input type="password" id="confirmUserPwd" name="confirmPassword" class="form-control" placeholder="确认密码" required
-               autocomplete="off" maxlength="18">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
-    </form>
+
+    <label for="userPwd" class="sr-only">密码</label>
+    <input type="password" id="userPwd" name="password" class="form-control" placeholder="密码" required autocomplete="off" maxlength="18" value="{{ form.password.data }}">
+
+    <label for="confirmUserPwd" class="sr-only">确认密码</label>
+    <input type="password" id="confirmUserPwd" name="password_confirm" class="form-control" placeholder="确认密码" required autocomplete="off" maxlength="18" value="{{ form.password_confirm.data }}">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+</form>
 
     <div class="footer">
         <p><a href="/admin/login" data-placement="left" title="已有账号? 前往登录">已有账号？前往登录→</a></p>
@@ -63,6 +64,7 @@
 <!-- 这里放入你的 JavaScript 文件链接和其他脚本 -->
 <script src="/static/admin/js/bootstrap.min.js"></script>
 <script>
+
 $(document).ready(function() {
     let countdown = 60;
 
@@ -85,20 +87,52 @@ $(document).ready(function() {
         return emailRegex.test(email);
     }
 
-    $('#sendVerification').click(function () {
-        const userEmail = $('#email').val();
-        if (!validateEmail(userEmail)) {
-            // 如果邮箱格式不正确，在这里添加提醒用户重新输入的逻辑
-            alert('请输入正确格式的邮箱地址');
-            return; // 邮箱格式不正确，不执行后续逻辑
-        }
-        // 在这里添加发送邮箱的逻辑，假设发送成功后开始倒计时
-        // 模拟发送成功后开始倒计时
-        setCountdown();
-    });
+
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('sendVerification').addEventListener('click', function() {
+        const userEmail = document.getElementById('email').value;
 
+        fetch('/admin/send_verification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: userEmail }),
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('验证码已发送');
+                // 在这里添加倒计时等逻辑
+                let countdown = 60;
+
+                function setCountdown() {
+                    if (countdown > 0) {
+                        document.getElementById('sendVerification').setAttribute('disabled', true);
+                        document.getElementById('sendVerification').textContent = countdown + '秒后重新发送';
+                        countdown--;
+                        setTimeout(setCountdown, 1000);
+                    } else {
+                        document.getElementById('sendVerification').removeAttribute('disabled');
+                        document.getElementById('sendVerification').textContent = '发送邮箱';
+                        countdown = 60;
+                    }
+                }
+
+                setCountdown(); // 启动倒计时
+
+            } else {
+                console.error('获取验证码失败');
+                // 处理获取验证码失败的情况
+            }
+        })
+        .catch(error => {
+            console.error('出现错误:', error);
+            // 处理出现错误的情况
+        });
+    });
+});
 </script>
 </body>
 </html>

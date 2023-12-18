@@ -4,7 +4,6 @@ from ..forms import RegisterForm, get_email_captcha, validate_captcha
 from flask import Blueprint, render_template, request, redirect, jsonify
 from ..models import *
 
-
 admin = Blueprint('admin', __name__)
 user_blueprint = Blueprint('user', __name__)
 
@@ -71,12 +70,11 @@ def admin_logout():
     return response
 
 
-
-
-#---------------------------用户注册路由--------------------------------------#
+# ---------------------------用户注册路由--------------------------------------#
 @admin.route('/admin/register/', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
+
     if form.validate_on_submit():
         email = form.email.data
         if form.get_cap.data:
@@ -87,8 +85,9 @@ def register():
             captcha = form.captcha.data
             name = form.username.data
             password = form.password.data
+            password_confirm = form.password_confirm.data
             email = form.email.data
-            new_user = AdminUserModel(name=name, password=password, email=email)
+            new_user = AdminUserModel(name=name, password=password, password_confirm=password_confirm, email=email)
             if not new_user.check_name(name):
                 return '该用户名已被注册~注册失败~'
             if not new_user.check_email(email):
@@ -105,8 +104,18 @@ def register():
                 return '验证码错误~注册失败~'
     return render_template('admin/register.html',
                            form=form,
-
                            )
+
+
+@admin.route('/admin/send_verification', methods=['POST'])
+def send_verification():
+    email = request.json.get('email')  # 获取传递过来的邮箱
+    result = get_email_captcha(email)  # 调用发送验证码的函数
+
+    if result:
+        return '验证码已发送'
+    else:
+        return '验证码发送失败，请稍后重试'
 
 
 # ------------------------分类管理----------------------------------
