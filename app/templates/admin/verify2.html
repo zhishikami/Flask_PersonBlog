@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        .errors {
+            color: red;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>用户注册</h1>
+    <form method="post" action="{{ url_for('admin.register') }}">
+        {{ form.hidden_tag() }}
+
+        <label for="email">邮箱:</label>
+        {{ form.email.label }}
+        {{ form.email(class="form-control") }}
+        {% if form.email.errors %}
+            <div class="errors">
+                {% for error in form.email.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <label for="username">用户名:</label>
+        {{ form.username.label }}
+        {{ form.username(class="form-control") }}
+        {% if form.username.errors %}
+            <div class="errors">
+                {% for error in form.username.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <label for="password">密码:</label>
+        {{ form.password.label }}
+        {{ form.password(class="form-control") }}
+        {% if form.password.errors %}
+            <div class="errors">
+                {% for error in form.password.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <label for="password_confirm">确认密码:</label>
+        {{ form.password_confirm.label }}
+        {{ form.password_confirm(class="form-control") }}
+        {% if form.password_confirm.errors %}
+            <div class="errors">
+                {% for error in form.password_confirm.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <label for="captcha">验证码:</label>
+        {{ form.captcha.label }}
+        {{ form.captcha(class="form-control") }}
+        {% if form.captcha.errors %}
+            <div class="errors">
+                {% for error in form.captcha.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <label for="get_cap">获取验证码:</label>
+        {{ form.get_cap(class="form-control", type="submit") }}
+
+        {{ form.submit(class="form-control", type="submit") }}
+    </form>
+</body>
+</html>

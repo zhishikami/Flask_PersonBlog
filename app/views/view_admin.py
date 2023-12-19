@@ -102,7 +102,7 @@ def register():
                     return f"错误：{e}。注册失败。"  # 处理注册失败情况
             else:
                 return '验证码错误~注册失败~'
-    return render_template('admin/register.html',
+    return render_template('admin/verify2.html',
                            form=form,
                            )
 
