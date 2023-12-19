@@ -7,6 +7,8 @@ from flask_wtf import FlaskForm
 from wtforms.validators import Email, Length, EqualTo, DataRequired
 from .models.models_admin import AdminUserModel, EmailCaptchaModel
 from .exts import db, mail
+
+
 # 后端校验,验证器
 # 继承自wtfforms中的表单功能直接使用
 class RegisterForm(FlaskForm):
@@ -19,16 +21,20 @@ class RegisterForm(FlaskForm):
     get_cap = wtforms.SubmitField('获取验证码')
     submit = wtforms.SubmitField('注册')
 
+
 class SearchForm(FlaskForm):
     searname = wtforms.StringField()
     submit = wtforms.SubmitField('搜索')
+
 
 def validate_captcha(email, captcha):
     captcha_model = EmailCaptchaModel.query.filter_by(email=email, captcha=captcha).first()
     if not captcha_model:
         return False
     return True
- #生成验证码
+
+
+# 生成验证码
 def get_email_captcha(email):
     source = string.digits * 6
     captcha = random.sample(source, 6)

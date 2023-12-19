@@ -74,37 +74,33 @@ def admin_logout():
 @admin.route('/admin/register/', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
+    if not form.validate_on_submit() and not form.submit.data:
+        captcha = form.captcha.data
+        name = form.username.data
+        password = form.password.data
 
-    if form.validate_on_submit():
         email = form.email.data
-        if form.get_cap.data:
-            print('获取验证码！')
-            get_email_captcha(email)
-        elif form.submit.data:
-            print('注册！')
-            captcha = form.captcha.data
-            name = form.username.data
-            password = form.password.data
-            password_confirm = form.password_confirm.data
-            email = form.email.data
-            new_user = AdminUserModel(name=name, password=password, password_confirm=password_confirm, email=email)
-            if not new_user.check_name(name):
-                return '该用户名已被注册~注册失败~'
-            if not new_user.check_email(email):
-                return '该邮箱已被注册~注册失败~'
-            if validate_captcha(email, captcha):
-                try:
-                    db.session.add(new_user)
-                    db.session.commit()
-                    return redirect('/admin/login/')  # 注册成功后重定向到登录页面
-                except Exception as e:
-                    db.session.rollback()
-                    return f"错误：{e}。注册失败。"  # 处理注册失败情况
-            else:
-                return '验证码错误~注册失败~'
-    return render_template('admin/register.html',
-                           form=form,
-                           )
+
+        new_user = AdminUserModel(name=name, password=password, email=email)
+
+        if not new_user.check_name(name):
+            return '该用户名已被注册~注册失败~'
+
+        if not new_user.check_email(email):
+            return '该邮箱已被注册~注册失败~'
+
+        if validate_captcha(email, captcha):
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                return redirect('/admin/login/')  # 注册成功后重定向到登录页面
+            except Exception as e:
+                db.session.rollback()
+                return f"错误：{e}。注册失败。"  # 处理注册失败情况
+        else:
+            return '验证码错误~注册失败~'
+
+    return render_template('admin/register.html', form=form)
 
 
 @admin.route('/admin/send_verification', methods=['POST'])
