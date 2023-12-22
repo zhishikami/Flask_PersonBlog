@@ -6,93 +6,124 @@
     <title>用户注册</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "微软雅黑", Arial, sans-serif;
             margin: 20px;
+            background-color: #f4f4f4;
+            background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+            background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+
+            font-family: 'Vibur', cursive;
+            /*   the main font */
+            font-family: 'Abel', sans-serif;
+            opacity: .95;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
         }
         form {
             max-width: 400px;
             margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+            padding: 2%;
+            background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
         }
         label {
             display: block;
             margin-bottom: 8px;
+            color: #333;
         }
         input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-bottom: 16px;
             box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
         }
         .errors {
             color: red;
             margin-bottom: 16px;
         }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 <body>
-    <h1>用户注册</h1>
-    <form method="post" action="{{ url_for('admin.register') }}">
-        {{ form.hidden_tag() }}
+<h1>用户注册</h1>
+<form method="post" action="{{ url_for('admin.register') }}">
+    {{ form.hidden_tag() }}
 
-        <label for="email">邮箱:</label>
-        {{ form.email.label }}
-        {{ form.email(class="form-control") }}
-        {% if form.email.errors %}
-            <div class="errors">
-                {% for error in form.email.errors %}
-                    {{ error }}
-                {% endfor %}
-            </div>
-        {% endif %}
+    <label for="email">邮箱:</label>
+    {{ form.email(class="form-control", placeholder="请输入邮箱") }}
+    {% if form.email.errors %}
+    <div class="errors">
+        {% for error in form.email.errors %}
+        {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-        <label for="username">用户名:</label>
-        {{ form.username.label }}
-        {{ form.username(class="form-control") }}
-        {% if form.username.errors %}
-            <div class="errors">
-                {% for error in form.username.errors %}
-                    {{ error }}
-                {% endfor %}
-            </div>
-        {% endif %}
+    <label for="username">用户名:</label>
+    {{ form.username(class="form-control", placeholder="请输入用户名") }}
+    {% if form.username.errors %}
+    <div class="errors">
+        {% for error in form.username.errors %}
+        {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-        <label for="password">密码:</label>
-        {{ form.password.label }}
-        {{ form.password(class="form-control") }}
-        {% if form.password.errors %}
-            <div class="errors">
-                {% for error in form.password.errors %}
-                    {{ error }}
-                {% endfor %}
-            </div>
-        {% endif %}
+    <label for="password">密码:</label>
+    {{ form.password(class="form-control", placeholder="请输入密码") }}
+    {% if form.password.errors %}
+    <div class="errors">
+        {% for error in form.password.errors %}
+        {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-        <label for="password_confirm">确认密码:</label>
-        {{ form.password_confirm.label }}
-        {{ form.password_confirm(class="form-control") }}
-        {% if form.password_confirm.errors %}
-            <div class="errors">
-                {% for error in form.password_confirm.errors %}
-                    {{ error }}
-                {% endfor %}
-            </div>
-        {% endif %}
+    <label for="password_confirm">确认密码:</label>
+    {{ form.password_confirm(class="form-control", placeholder="请确认密码") }}
+    {% if form.password_confirm.errors %}
+    <div class="errors">
+        {% for error in form.password_confirm.errors %}
+        {{ error }}
+        {% endfor %}
+    </div>
+    {% endif %}
 
-        <label for="captcha">验证码:</label>
-        {{ form.captcha.label }}
-        {{ form.captcha(class="form-control") }}
-        {% if form.captcha.errors %}
-            <div class="errors">
-                {% for error in form.captcha.errors %}
-                    {{ error }}
-                {% endfor %}
-            </div>
-        {% endif %}
+    <label for="captcha">验证码:</label>
+    {{ form.captcha(class="form-control", placeholder="请输入验证码") }}
 
-        <label for="get_cap">获取验证码:</label>
-        {{ form.get_cap(class="form-control", type="submit") }}
+    {{ form.get_cap(class="form-control", type="submit") }}
+    <input class="btn" type="submit" value="注册">
+</form>
+<div style="text-align: center; margin-top: 20px;">
+    已有账户？<a href="/admin/login" data-placement="left" title="已有账号? 前往登录">返回登录</a>
+</div>
+   <script>
 
-        {{ form.submit(class="form-control", type="submit") }}
-    </form>
+    </script>
 </body>
 </html>

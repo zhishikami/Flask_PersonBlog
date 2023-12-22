@@ -88,7 +88,7 @@ def register():
             password = form.password.data
             password_confirm = form.password_confirm.data
             email = form.email.data
-            new_user = AdminUserModel(name=name, password=password, password_confirm=password_confirm, email=email)
+            new_user = AdminUserModel(name=name, password=password, email=email)
             if not new_user.check_name(name):
                 return '该用户名已被注册~注册失败~'
             if not new_user.check_email(email):
@@ -103,7 +103,7 @@ def register():
                     return f"错误：{e}。注册失败。"  # 处理注册失败情况
             else:
                 return '验证码错误~注册失败~'
-    return render_template('admin/register.html',
+    return render_template('admin/verify2.html',
                            form=form,
                            )
 
