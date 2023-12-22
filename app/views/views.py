@@ -24,7 +24,7 @@ def blog_index():
 @blog.route('/photos/')
 def blog_photos():
     photos = PhotoModel.query.all()
-    return  render_template('home/photos.html', photos=photos)
+    return render_template('home/photos.html', photos=photos)
 
 # 博客-我的日计
 @blog.route('/article/')
