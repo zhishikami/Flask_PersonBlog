@@ -87,7 +87,7 @@ def register():
             password = form.password.data
             password_confirm = form.password_confirm.data
             email = form.email.data
-            new_user = AdminUserModel(name=name, password=password, password_confirm=password_confirm, email=email)
+            new_user = AdminUserModel(name=name, password=password, email=email)
             if not new_user.check_name(name):
                 return '该用户名已被注册~注册失败~'
             if not new_user.check_email(email):

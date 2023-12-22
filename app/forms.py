@@ -15,7 +15,7 @@ class RegisterForm(FlaskForm):
     username = wtforms.StringField(validators=[DataRequired(message='用户名不能为空')])
     password = wtforms.StringField(validators=[DataRequired(message='密码不能为空')])
     password_confirm = wtforms.StringField(validators=[EqualTo("password", message="两次密码不一致，请重新输入！")])
-    captcha = wtforms.StringField(validators=[DataRequired(message='验证码不能为空')])
+    captcha = wtforms.StringField()
     get_cap = wtforms.SubmitField('获取验证码')
     submit = wtforms.SubmitField('注册')
 
