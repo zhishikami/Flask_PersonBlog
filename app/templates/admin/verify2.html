@@ -117,7 +117,7 @@
     {{ form.captcha(class="form-control", placeholder="请输入验证码") }}
 
     {{ form.get_cap(class="form-control", type="submit") }}
-    <input class="btn" type="submit" value="注册">
+    {{ form.submit(class="form-control", type="submit") }}
 </form>
 <div style="text-align: center; margin-top: 20px;">
     已有账户？<a href="/admin/login" data-placement="left" title="已有账号? 前往登录">返回登录</a>

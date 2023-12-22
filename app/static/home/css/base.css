@@ -8,7 +8,7 @@ body {
 	padding-top: 50px;
  background: #efefef;
  line-height: 1.5;
- background-image:url("/static/admin/images/erciyuan/erciyuan7.png");
+ background-image:url("/static/admin/images/erciyuan/668124.png");
 
  	background-repeat:no-repeat;
 	background-size:cover;
@@ -44,14 +44,14 @@ nav { width: 1000px; margin: auto ;position:relative}
     position: relative;
 }
 
-*//* ä¸‹åˆ’çº¿æ ·å¼ *//*
+*//* ä¸???çº¿æ?·å? *//*
 nav .underline {
     position: absolute;
     bottom: 0;
     left: 0;
     height: 2px;
-    background-color: #000; *//* ä¸‹åˆ’çº¿é¢œè‰² *//*
-    transition: width 0.3s ease; *//* è¿‡æ¸¡æ•ˆæœ *//*
+    background-color: #000; *//* ä¸???çº¿é??? *//*
+    transition: width 0.3s ease; *//* è¿?æ¸¡æ???? *//*
 }*/
 
 /*#starlist li:hover .underline {
@@ -71,16 +71,16 @@ nav .underline {
     position: relative;
 }
 
-/* è°ƒæ•´å¯¼èˆªé¡¹çš„æ ·å¼ä¸ºé•¿æ–¹å½¢ */
+/* è°??´å?¼è??é¡¹ç???·å?ä¸ºé?¿æ?¹å½¢ */
 #starlist li a {
     display: block;
-    padding: 0px 20px; /* è°ƒæ•´é•¿æ–¹å½¢å¤§å° */
-    background-color: #2ecc71; /* èƒŒæ™¯é¢œè‰² */
-    text-decoration: none; /* å»é™¤ä¸‹åˆ’çº¿ */
-    color: #611fec; /* æ–‡å­—é¢œè‰² */
-    border-radius: 5px; /* åœ†è§’ */
+    padding: 0px 20px; /* è°??´é?¿æ?¹å½¢å¤§å? */
+    background-color: #2ecc71; /* ????é¢??? */
+    text-decoration: none; /* ?»é?¤ä???çº? */
+    color: #611fec; /* ??å­?é¢??? */
+    border-radius: 5px; /* ??è§? */
 
-    transition: background-color 0.3s ease, transform 0.3s ease; /* è¿‡æ¸¡æ•ˆæœ */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* è¿?æ¸¡æ???? */
     background-color: transparent;
     position: relative;
     overflow: hidden;
@@ -88,28 +88,28 @@ nav .underline {
 
 }
 
-/* é¼ æ ‡æ‚¬åœæ—¶çš„æ ·å¼ */
+/* é¼????????¶ç???·å? */
 #starlist li a:hover {
     background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
 }
 
-/* ç”¨ä¼ªå…ƒç´ æ¥åˆ›å»ºæ‚¬åœæ•ˆæœ */
+/* ?¨ä¼ª??ç´??¥å??å»ºæ???????? */
 #starlist li a::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 300%; /* è¾ƒå¤§çš„å®½åº¦ï¼Œç”¨äºæ‚¬åœæ•ˆæœ */
-    height: 300%; /* è¾ƒå¤§çš„é«˜åº¦ï¼Œç”¨äºæ‚¬åœæ•ˆæœ */
-    background-color: rgba(255, 255, 255, 0.1); /* åŠé€æ˜ç™½è‰² */
-    transition: all 0.5s ease; /* è¿‡æ¸¡æ•ˆæœ */
+    width: 300%; /* è¾?å¤§ç??å®½åº¦ï¼??¨ä????????? */
+    height: 300%; /* è¾?å¤§ç??é«?åº?ï¼??¨ä????????? */
+    background-color: rgba(255, 255, 255, 0.1); /* ???????½è?? */
+    transition: all 0.5s ease; /* è¿?æ¸¡æ???? */
     z-index: -1;
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
 }
 
 #starlist li a:hover::before {
-    transform: translate(-50%, -50%) scale(1); /* æ”¾å¤§ä¼ªå…ƒç´  */
+    transform: translate(-50%, -50%) scale(1); /* ?¾å¤§ä¼???ç´? */
 }
 
 .navicon { display: block; position: relative; width: 30px; height: 5px; background-color: #000; margin-top: 20px }

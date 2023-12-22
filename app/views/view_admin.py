@@ -74,7 +74,6 @@ def admin_logout():
 @admin.route('/admin/register/', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
-    print('注册！')
     if form.validate_on_submit():
         email = form.email.data
 
