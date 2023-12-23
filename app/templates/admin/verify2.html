@@ -47,6 +47,7 @@
             border-radius: 4px;
             font-size: 16px;
         }
+
         .errors {
             color: red;
             margin-bottom: 16px;
@@ -65,6 +66,31 @@
         .btn:hover {
             background-color: #0056b3;
         }
+
+
+
+    .el-button--success {
+        background-color: #67c23a; /* Success 主色 */
+        color: #fff; /* 文字颜色 */
+        border: none; /* 去除边框 */
+        transition: background-color 0.3s;
+    }
+
+    .el-button--success:hover {
+        background-color: #5a9e32; /* Hover 时颜色 */
+    }
+
+
+    .el-button--primary {
+        background-color: #409EFF; /* Primary 主色 */
+        color: #fff; /* 文字颜色 */
+        border: none; /* 去除边框 */
+        transition: background-color 0.3s;
+    }
+
+    .el-button--primary:hover {
+        background-color: #3074e2; /* Hover 时颜色 */
+    }
 
     </style>
 </head>
@@ -116,8 +142,13 @@
     <label for="captcha">验证码:</label>
     {{ form.captcha(class="form-control", placeholder="请输入验证码") }}
 
-    {{ form.get_cap(class="form-control", type="submit") }}
-    {{ form.submit(class="form-control", type="submit") }}
+   <div class="get_cap">
+        {{ form.get_cap(class="el-button--success", type="submit") }}
+   </div>
+      <div class="submit">
+       {{ form.submit(class="el-button--primary", type="submit") }}
+   </div>
+
 </form>
 <div style="text-align: center; margin-top: 20px;">
     已有账户？<a href="/admin/login" data-placement="left" title="已有账号? 前往登录">返回登录</a>
