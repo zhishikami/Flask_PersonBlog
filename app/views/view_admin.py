@@ -85,7 +85,6 @@ def register():
             captcha = form.captcha.data
             name = form.username.data
             password = form.password.data
-            password_confirm = form.password_confirm.data
             email = form.email.data
             new_user = AdminUserModel(name=name, password=password, email=email)
             if not new_user.check_name(name):
@@ -292,3 +291,12 @@ def admin_delarticle():
         return jsonify({'code': 200, 'msg': '删除成功！'})
 
     return jsonify({'code': 400, 'msg': '请求方式错误！'})
+
+
+# /admin/photos/
+
+@admin.route('/admin/photos/', methods=['GET', 'POST'])
+@login_required
+def admin_photos():
+    photos = PhotoModel.query.all()
+    return render_template('home/photos.html', photos=photos)
