@@ -86,6 +86,7 @@
                             <div class="add-article-box-content">
                                 <input type="text" class="form-control" placeholder="在此处输入标题"
                                        name="name"
+                                       value="{{ article.name }}"
                                        autocomplete="off">
                             </div>
                         </div>
@@ -96,6 +97,7 @@
                                 <input type="text" class="form-control"
                                        placeholder="请输入关键字"
                                        name="keywords"
+                                       value="{{ article.keyword }}"
                                        autocomplete="off">
                                 <span class="prompt-text">多个标签请用英文逗号,隔开。</span>
                             </div>
@@ -104,7 +106,8 @@
                         <div class="add-article-box">
                             <h2 class="add-article-box-title"><span>文章内容</span></h2>
                             <div class="add-article-box-content">
-                                <textarea cols="5" class="form-control" name="content" autocomplete="off"></textarea>
+                                <textarea cols="5" class="form-control" name="content"
+                                          autocomplete="off">{{ article.content }}</textarea>
                             </div>
                         </div>
 
@@ -115,21 +118,20 @@
                             <h2 class="add-article-box-title"><span>选择分类</span></h2>
                             <div class="add-article-box-content">
                                 <ul class="category-list">
-                                    <li>
-                                        <label>
-                                            <input name="category" type="radio" checked>分类1
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input name="category" type="radio">分类2
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>
-                                            <input name="category" type="radio">分类3
-                                        </label>
-                                    </li>
+                                    {% for category in categorys %}
+                                        <li>
+                                            <label>
+                                                {% if category.id == article.category_id %}
+                                                    <input name="category" value="{{ category.id }}" type="radio" checked>
+                                                {% else %}
+                                                    <input name="category" value="{{ category.id }}" type="radio">
+                                                {% endif %}
+
+                                                {{ category.name }}
+                                            </label>
+                                        </li>
+                                    {% endfor %}
+
                                 </ul>
                             </div>
                         </div>
@@ -140,7 +142,7 @@
                                 <input type="file" name="img" id="file">
                             </div>
                             <div class="add-article-box-footer">
-                                <img id="myimg" src="" width="130" height="100">
+                                <img id="myimg" src="{{ article.img }}" width="130" height="100">
                             </div>
                         </div>
                         <div class="add-article-box">

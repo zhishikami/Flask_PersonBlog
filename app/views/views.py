@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request
 from ..models.models import *
 blog = Blueprint('blog', __name__)
-from ..forms import SearchForm
 #蓝图
 @blog.route('/')
 @blog.route('/index/', methods=['GET', 'POST'])

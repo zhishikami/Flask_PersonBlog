@@ -101,7 +101,7 @@ def register():
                     return f"错误：{e}。注册失败。"  # 处理注册失败情况
             else:
                 return '验证码错误~注册失败~'
-    return render_template('admin/verify2.html',
+    return render_template('admin/register.html',
                            form=form,
                            )
 
@@ -266,12 +266,52 @@ def admin_addarticle():
 
 
 # 后台管理-修改文章
-@admin.route('/admin/updatearticle/', methods=['GET', 'POST'])
+@admin.route('/admin/updatearticle/<id>/', methods=['GET', 'POST'])
 @login_required
-def admin_updatearticle():
-    return render_template('admin/article_update.html',
-                           username=request.user.name
-                           )
+def admin_updatearticle(id):
+    categorys = CategoryModel.query.all()
+    article = ArticleModel.query.get(id)
+
+    if request.method == 'GET':
+        return render_template('admin/article_update.html',
+                               username=request.user.name,
+                                categorys=categorys,
+                               article=article
+                               )
+    elif request.method == 'POST':
+        name = request.form.get('name')
+        keywords = request.form.get('keywords')
+        content = request.form.get('content')
+        category = request.form.get('category')
+        img = request.files.get('img')
+        # print('img', img)
+        # print('img.filename', img.filename)
+
+        # 图片存储路径
+        img_name = f'{time.time()}-{img.filename}'
+        img_url = f'/static/home/uploads/{img_name}'
+
+        # 修改文章
+        try:
+            article.name = name
+            article.keyword = keywords
+            article.content = content
+            article.category_id = category
+            article.img = img_url
+
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            db.session.flush()
+            print('e:', e)
+        else:
+            # 如果数据库加入成功则，手动保存数据
+            img_data = img.read()
+            with open(f'app/{img_url}', 'wb') as fp:
+                fp.write(img_data)
+                fp.flush()
+
+        return redirect('/admin/article/')
 
 
 # 后台管理-删除文章
